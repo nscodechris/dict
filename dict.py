@@ -6,26 +6,26 @@ conn = psycopg2.connect(
    password="Cvmillan10!?"
 )
 
-def read_dict(C):
+def read_dict(conn):
     # returns a list of all the words in dict
-    cur = C.cursor()
+    cur = conn.cursor()
     cur.execute("SELECT id, word, translation FROM dictionary;")
     rows = cur.fetchall()
     cur.close()
     return rows
-def add_word(C, word, translation):
+def add_word(conn, word, translation):
     # adding words to the dict
-    cur = C.cursor()
+    cur = conn.cursor()
     cur.execute(f"INSERT INTO dictionary (word, translation) VALUES ('{word}', '{translation}');")
     cur.close()
-def delete_word(C, ID):
+def delete_word(conn, ID):
     # delete words from dict
-    cur = C.cursor()
+    cur = conn.cursor()
     cur.execute(f"DELETE FROM dictionary WHERE id = '{ID}';")
     cur.close()
-def save_dict(C):
+def save_dict(conn):
     # saving the changes thas has been done
-    cur = C.cursor()
+    cur = conn.cursor()
     cur.execute("COMMIT;")
     cur.close()
 
