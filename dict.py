@@ -8,6 +8,7 @@ conn = psycopg2.connect(
 
 def read_dict(conn):
     # returns a list of all the words in dict
+    #
     cur = conn.cursor()
     cur.execute("SELECT id, word, translation FROM dictionary;")
     rows = cur.fetchall()
