@@ -35,7 +35,8 @@ def main():
         print("Commands: \n--list\n--add\n--delete\n--quit!")
         cmd = input("Command: ")
         if cmd == "list":
-            print(read_dict(conn))
+            for i, wd, trans in read_dict(conn):
+                print(f"{i}: {wd} - {trans}")
         elif cmd == "add":
             name = input("  Word: ")
             phone = input("  Translation: ")
@@ -49,3 +50,4 @@ def main():
 
 
 main()
+
