@@ -7,20 +7,24 @@ conn = psycopg2.connect(
 )
 
 def read_dict(C):
+    # returns a list of all the words in dict
     cur = C.cursor()
     cur.execute("SELECT id, word, translation FROM dictionary;")
     rows = cur.fetchall()
     cur.close()
     return rows
 def add_word(C, word, translation):
+    # adding words to the dict
     cur = C.cursor()
     cur.execute(f"INSERT INTO dictionary (word, translation) VALUES ('{word}', '{translation}');")
     cur.close()
 def delete_word(C, ID):
+    # delete words from dict
     cur = C.cursor()
     cur.execute(f"DELETE FROM dictionary WHERE id = '{ID}';")
     cur.close()
 def save_dict(C):
+    # saving the changes thas has been done
     cur = C.cursor()
     cur.execute("COMMIT;")
     cur.close()
